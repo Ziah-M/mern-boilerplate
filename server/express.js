@@ -11,8 +11,6 @@ import cors from "cors";
 import helmet from "helmet";
 
 const CURRENT_WORKING_DIR = process.cwd();
-const mongoDBUrl =
-  process.env.MONGODB_URI || "mongodb://localhost:27017/mongodb";
 
 const app = express();
 
