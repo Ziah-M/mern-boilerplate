@@ -5,6 +5,8 @@ import path from "path";
 import userRoutes from "./routes/user.routes";
 import authRoutes from "./routes/auth.routes";
 
+import path from "path";
+
 // Express middleware modules
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
@@ -23,6 +25,7 @@ const app = express();
 devBundle.compile(app);
 
 // Serve static files from dist folder when the requested route starts with /dist
+const CURRENT_WORKING_DIR = process.cwd();
 app.use("/dist", express.static(path.join(CURRENT_WORKING_DIR, "dist")));
 
 // --------------------- MIDDLEWARE MODULES -------------------
