@@ -32,4 +32,46 @@ const UserSchema = new mongoose.Schema({
   salt: String,
 });
 
+// password handled as a virtual field instead
+// not stored directly in the user document
+// when password value is received on user creation or update
+// it is encrypted into a new hashed value
+// and is set to the hashed_password field
+// along with the unique salt value in the salt field
+UserSchema.virtual("password")
+  .set((password) => {
+    this._password = password;
+    this.salt = this.makeSalt();
+    this.hashed_password = this.encryptPassword(password);
+  })
+  .get(() => this._password);
+
+UserSchema.methods = {
+  // Called to verify sign-in attempts
+  // by matching the user-provided password text
+  // with the hashed_password stored in the database for a specific user
+  authenticate: (plainText) =>
+    this.encryptPassword(plainText) === this.hashed_password,
+
+  // Used to generate an encrypted hash from
+  // the plain-text password
+  // AND a unique salt value
+  // uses  the crypto module from node
+  encryptPassword: (password) => {
+    if (!password) return "";
+    try {
+      return crypto
+        .createHmac("sha1", this.salt)
+        .update(password)
+        .digest("hex");
+    } catch (err) {
+      return "";
+    }
+  },
+
+  // generates a unique and random salt value using the
+  // timestamp at execution and Math.random()
+  makeSalt: () => Math.round(new Date().valueOf() * Math.random()) + "",
+};
+
 export default mongoose.model("User", UserSchema);
