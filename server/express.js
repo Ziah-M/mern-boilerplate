@@ -16,6 +16,12 @@ const CURRENT_WORKING_DIR = process.cwd();
 
 const app = express();
 
+// COMMENT THIS OUT FOR PRODUCTION
+// Will import the middleware along with the client-side Webpack config
+// Then initiates webpack to compile & bundle client-side code
+// and enable hot-reloading
+devBundle.compile(app);
+
 // Serve static files from dist folder when the requested route starts with /dist
 app.use("/dist", express.static(path.join(CURRENT_WORKING_DIR, "dist")));
 
@@ -42,9 +48,6 @@ app.use(helmet());
 app.use(cors());
 
 // --------------------------------
-
-// COMMENT THIS OUT FOR PRODUCTION
-devBundle.compile(app);
 
 // ROUTES
 app.use("/", userRoutes);
