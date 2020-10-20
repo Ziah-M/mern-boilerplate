@@ -1,7 +1,8 @@
 import express from "express";
 import devBundle from "./devBundle";
 import path from "path";
-import template from "../template";
+
+import userRoutes from './routes/user.routes'
 
 // Express middleware modules
 import bodyParser from "body-parser";
@@ -45,8 +46,6 @@ app.use(cors());
 devBundle.compile(app);
 
 // ROUTES
-app.get("/", (req, res) => {
-  res.status(200).send(template());
-});
+app.use('/', userRoutes)
 
 export default app;
