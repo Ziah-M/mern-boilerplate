@@ -1,0 +1,43 @@
+{
+  "name": "mern-boilerplate",
+  "version": "1.0.0",
+  "description": "Boilerplate code for a full-stack MERN application",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ziah-M/mern-boilerplate.git"
+  },
+  "keywords": [
+    "MERN",
+    "Boilerplate"
+  ],
+  "author": "Ziah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ziah-M/mern-boilerplate/issues"
+  },
+  "homepage": "https://github.com/Ziah-M/mern-boilerplate#readme",
+  "dependencies": {
+    "@hot-loader/react-dom": "^17.0.0-rc.2",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-hot-loader": "^4.13.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.1",
+    "babel-loader": "^8.1.0",
+    "nodemon": "^2.0.6",
+    "webpack": "^5.1.3",
+    "webpack-cli": "^4.1.0",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-node-externals": "^2.5.2"
+  }
+}
