@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Boilerplate code for a full-stack MERN application",
   "scripts": {
+    "development": "nodemon",
+    "build": "webpack --config webpack.config.client.production.js && webpack --mode=production --config webpack.config.server.js",
+    "start": "NODE_ENV=production node ./dist/server.generated.js",
     "test": "test"
   },
   "repository": {
