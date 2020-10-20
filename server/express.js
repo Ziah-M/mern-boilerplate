@@ -3,6 +3,7 @@ import devBundle from "./devBundle";
 import path from "path";
 
 import userRoutes from './routes/user.routes'
+import authRoutes from './routes/auth.routes'
 
 // Express middleware modules
 import bodyParser from "body-parser";
@@ -47,5 +48,6 @@ devBundle.compile(app);
 
 // ROUTES
 app.use('/', userRoutes)
+app.use('/', authRoutes)
 
 export default app;

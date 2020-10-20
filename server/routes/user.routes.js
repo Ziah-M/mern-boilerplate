@@ -1,6 +1,5 @@
 import express from 'express'
 import userCtrl from '../controllers/user.controller'
-import template from "../template";
 
 const router = express.Router()
 
