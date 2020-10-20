@@ -4,6 +4,7 @@
       "@babel/preset-env",
       {
         "targets": {
+          // Configurs transpiler to allow the latest JS features
           "node": "current"
         }
       }
