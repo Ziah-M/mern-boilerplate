@@ -60,6 +60,7 @@ const signout = (req, res) => {
 const requireSignin = expressJwt({
   secret: config.jwtSecret,
   userProperty: "auth",
+  algorithms: ["sha1", "RS256", "HS256"],
 });
 
 // Checks whether the user is the same as the user

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import crypto from 'crypto'
 
 // Using mongoose to define the schema with the data fields
 // Allows:
@@ -39,7 +40,7 @@ const UserSchema = new mongoose.Schema({
 // and is set to the hashed_password field
 // along with the unique salt value in the salt field
 UserSchema.virtual("password")
-  .set((password) => {
+  .set(function (password) {
     this._password = password;
     this.salt = this.makeSalt();
     this.hashed_password = this.encryptPassword(password);
@@ -50,14 +51,15 @@ UserSchema.methods = {
   // Called to verify sign-in attempts
   // by matching the user-provided password text
   // with the hashed_password stored in the database for a specific user
-  authenticate: (plainText) =>
-    this.encryptPassword(plainText) === this.hashed_password,
+  authenticate: function (plainText) {
+    return this.encryptPassword(plainText) === this.hashed_password;
+  },
 
   // Used to generate an encrypted hash from
   // the plain-text password
   // AND a unique salt value
   // uses  the crypto module from node
-  encryptPassword: (password) => {
+  encryptPassword: function (password) {
     if (!password) return "";
     try {
       return crypto
@@ -65,19 +67,22 @@ UserSchema.methods = {
         .update(password)
         .digest("hex");
     } catch (err) {
+      console.log('error in encryptPassword')
       return "";
     }
   },
 
   // generates a unique and random salt value using the
   // timestamp at execution and Math.random()
-  makeSalt: () => Math.round(new Date().valueOf() * Math.random()) + "",
+  makeSalt: function () {
+    return Math.round(new Date().valueOf() * Math.random()) + "";
+  },
 };
 
 // CUSTOM VALIDATION
 
 // check password value before Mongoose attempts to store hashed_password
-UserSchema.path("hashed_password").validate((v) => {
+UserSchema.path("hashed_password").validate(function (v) {
   if (this._password && this._password.length < 6) {
     this.invalidate("password", "Password must be at least 6 characters");
   }

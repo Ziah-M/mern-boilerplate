@@ -2,8 +2,8 @@ import express from "express";
 import devBundle from "./devBundle";
 import path from "path";
 
-import userRoutes from './routes/user.routes'
-import authRoutes from './routes/auth.routes'
+import userRoutes from "./routes/user.routes";
+import authRoutes from "./routes/auth.routes";
 
 // Express middleware modules
 import bodyParser from "body-parser";
@@ -47,7 +47,21 @@ app.use(cors());
 devBundle.compile(app);
 
 // ROUTES
-app.use('/', userRoutes)
-app.use('/', authRoutes)
+app.use("/", userRoutes);
+app.use("/", authRoutes);
+
+// Necessary error-catching code
+// MUST BE AFTER ROUTES ARE MOUNTED
+// Catches auth-related errors thrown by express-jwt
+// express-jwt throws an UnauthorizedError when a token cannot be validated
+// also catches other server-side errors
+app.use((err, req, res, next) => {
+  if (err.name === "UnauthorizedError") {
+    res.status(401).json({ error: err.name + ": " + err.message });
+  } else if (err) {
+    res.status(400).json({ error: err.name + ": " + err.message });
+    console.log(err);
+  }
+});
 
 export default app;

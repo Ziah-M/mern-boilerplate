@@ -4,7 +4,7 @@ import { MongoClient } from "mongodb";
 import mongoose from "mongoose";
 
 //configure mongoose to use native ES6 promises
-mongoose.Promise = global.Promsie;
+mongoose.Promise = global.Promise;
 
 // Start server to listen for incoming requests
 app.listen(config.port, (err) => {

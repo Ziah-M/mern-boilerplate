@@ -1,6 +1,6 @@
 import User from "../models/user.model";
 import extend from "lodash/extend";
-import errorHandler from "./error.controller";
+import errorHandler from "../helpers/dbErrorHandler";
 
 const create = async (req, res) => {
   // create new user with the user JSON object received in POST request
@@ -13,7 +13,7 @@ const create = async (req, res) => {
     });
   } catch (err) {
     return res.status(400).json({
-      error: errorHandling.getErrorMessage(err),
+      error: errorHandler.getErrorMessage(err),
     });
   }
 };
