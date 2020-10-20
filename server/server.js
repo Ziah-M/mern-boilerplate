@@ -2,8 +2,11 @@ import express from "express";
 import devBundle from "./devBundle";
 import path from "path";
 import template from "../template";
+import { MongoClient } from 'mongodb'
 
 const CURRENT_WORKING_DIR = process.cwd();
+const mongoDBUrl = process.env.MONGODB_URI ||
+  'mongodb://localhost:27017/mongodb'
 
 const app = express();
 
@@ -26,3 +29,10 @@ app.listen(port, function onStart(err) {
   }
   console.info("Server started on port %s.", port);
 });
+
+
+// Connect to MongoDB
+MongoClient.connect(mongoDBUrl, (err, db)=>{
+  console.log("Connected successfully to mongodb server")
+ db.close()
+})
