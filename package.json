@@ -2,7 +2,6 @@
   "name": "mern-boilerplate",
   "version": "1.0.0",
   "description": "Boilerplate code for a full-stack MERN application",
-  "main": "index.js",
   "scripts": {
     "test": "test"
   },
