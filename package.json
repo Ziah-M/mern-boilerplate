@@ -24,6 +24,8 @@
   "homepage": "https://github.com/Ziah-M/mern-boilerplate#readme",
   "dependencies": {
     "@hot-loader/react-dom": "^17.0.0-rc.2",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",
@@ -37,7 +39,9 @@
     "mongoose": "^5.10.9",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "react-hot-loader": "^4.13.0"
+    "react-hot-loader": "^4.13.0",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
