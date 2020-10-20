@@ -52,7 +52,7 @@ UserSchema.methods = {
   // by matching the user-provided password text
   // with the hashed_password stored in the database for a specific user
   authenticate: function (plainText) {
-    return this.encryptPassword(plainText) === this.hashed_password;
+    return this.encryptPassword(plainText) == this.hashed_password;
   },
 
   // Used to generate an encrypted hash from

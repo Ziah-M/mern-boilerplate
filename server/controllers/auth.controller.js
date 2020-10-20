@@ -10,7 +10,7 @@ import config from "./../../config/config";
 
 const signin = async (req, res) => {
   try {
-    let user = await user.findOne({ email: req.body.email });
+    let user = await User.findOne({ email: req.body.email });
 
     // User doesn't exist
     if (!user) return res.status("401").json({ error: "User not found" });

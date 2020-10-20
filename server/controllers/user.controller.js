@@ -22,7 +22,7 @@ const list = async (req, res) => {
   try {
     let users = await User.find().select("name email updated created");
     res.json(users);
-  } catch {
+  } catch (err) {
     return res.status(400).json({
       error: errorHandling.getErrorMessage(err),
     });
@@ -48,7 +48,7 @@ const userByID = async (req, res, next, id) => {
     req.profile = user;
     // next middleware propogates control to next relevant controller
     next();
-  } catch {
+  } catch (err) {
     return res.status(400).json({
       error: "Could not retrieve user",
     });
@@ -75,9 +75,9 @@ const update = async (req, res, next) => {
     user.salt = undefined;
 
     res.json(user);
-  } catch {
+  } catch (err) {
     return res.status(400).json({
-      error: errorHandling.getErrorMessage(err),
+      error: errorHandler.getErrorMessage(err),
     });
   }
 };
@@ -92,9 +92,9 @@ const remove = async (req, res, next) => {
     deletedUser.salt = undefined;
 
     res.json(deletedUser);
-  } catch {
+  } catch (err) {
     return res.status(400).json({
-      error: errorHandling.getErrorMessage(err),
+      error: errorHandler.getErrorMessage(err),
     });
   }
 };
