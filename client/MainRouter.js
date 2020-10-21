@@ -6,10 +6,12 @@ import Home from "./core/Home";
 import EditProfile from "./user/EditProfile";
 import Profile from "./user/Profile";
 import Users from "./user/Users";
+import Menu from "./main/Menu";
 
 const MainRouter = () => {
   return (
     <div>
+      <Menu />
       <Switch>
         <PrivateRoute path="/user/edit/:userId" component={EditProfile} />
         <Route path="/user/:userId" component={Profile} />
