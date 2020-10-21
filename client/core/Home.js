@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default Home = () => {
+export default function Home() {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
@@ -32,14 +32,14 @@ export default Home = () => {
       </Typography>
       <CardMedia
         className={classes.media}
-        image="https://images.pexels.com/photos/4821089/pexels-photo-4821089.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-        title="Unicorn Bicycle"
+        src="https://images.pexels.com/photos/4821089/pexels-photo-4821089.jpeg"
+        title="Home Image"
       />
       <CardContent>
         <Typography variant="body2" component="p">
-          Welcome to the MERN Skeleton home page.
+          Welcome to the MERN Boilerplate home page.
         </Typography>
       </CardContent>
     </Card>
   );
-};
+}
