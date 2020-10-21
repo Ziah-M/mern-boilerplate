@@ -26,4 +26,4 @@ function clearJWT(cb) {
   });
 }
 
-export { authenticate, isAuthenticated, clearJWT };
+export default { authenticate, isAuthenticated, clearJWT };
