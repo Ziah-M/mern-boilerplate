@@ -5,16 +5,12 @@ import path from "path";
 import userRoutes from "./routes/user.routes";
 import authRoutes from "./routes/auth.routes";
 
-import path from "path";
-
 // Express middleware modules
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import compress from "compression";
 import cors from "cors";
 import helmet from "helmet";
-
-const CURRENT_WORKING_DIR = process.cwd();
 
 const app = express();
 
